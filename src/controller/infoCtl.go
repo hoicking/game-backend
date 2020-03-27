@@ -3,9 +3,12 @@ package controller
 import (
 	"encoding/json"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
+
+type InfoCtl struct {
+	Router *mux.Router
+}
 
 func getWeather(res http.ResponseWriter, request *http.Request) {
 	res.Header().Set("Content-Type", "application/json")
@@ -25,8 +28,7 @@ func getData(res http.ResponseWriter, request *http.Request) {
 }
 
 // InitRouter sfdsf
-func regist(r *mux.Router) {
-	r.HandleFunc("/info/weather", getWeather).Methods("get")
-	r.HandleFunc("/info/data", getData).Methods("get")
-
+func (ctl InfoCtl) Regist() {
+	ctl.Router.HandleFunc("/info/weather", getWeather).Methods("get")
+	ctl.Router.HandleFunc("/info/data", getData).Methods("get")
 }
