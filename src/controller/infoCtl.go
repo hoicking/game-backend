@@ -25,6 +25,9 @@ func getWeather(res http.ResponseWriter, request *http.Request) {
 
 func getData(res http.ResponseWriter, request *http.Request) {
 
+	data := "get data"
+	res.Write([]byte(data))
+
 }
 
 // InitRouter sfdsf
