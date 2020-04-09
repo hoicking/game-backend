@@ -2,7 +2,9 @@ package controller
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"game-backend/src/model"
 	"github.com/gorilla/mux"
 )
 
@@ -23,15 +25,21 @@ func getWeather(res http.ResponseWriter, request *http.Request) {
 	res.Write(json)
 }
 
-func getData(res http.ResponseWriter, request *http.Request) {
+func saveWeather(res http.ResponseWriter, request *http.Request) {
+	decoder := json.NewDecoder(request.Body)
+	var data map[string]string
+	err := decoder.Decode(&data)
+	if err != nil {
+		panic(err)
+	}
+	weatherModel := model.WeatherModel{}
 
-	data := "get data"
-	res.Write([]byte(data))
+	weatherModel.SaveWeather(data["weather"])
 
 }
 
-// InitRouter sfdsf
+// InitRouter
 func (ctl InfoCtl) Regist() {
 	ctl.Router.HandleFunc("/info/weather", getWeather).Methods("get")
-	ctl.Router.HandleFunc("/info/data", getData).Methods("get")
+	ctl.Router.HandleFunc("/info/weather", saveWeather).Methods("put")
 }
