@@ -1,7 +1,6 @@
 package util
 
 import (
-	// "fmt"
 	"os"
 
 	"github.com/jinzhu/gorm"
@@ -18,6 +17,8 @@ func InitDB() (err error) {
 	pass := os.Getenv("MYSQL_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
 
+	logMode := os.Getenv("LOG_MODE")
+
 	connection := user + ":" + pass + "@(" + host + ":" + port + ")/" + dbName + "?charset=utf8&parseTime=True&loc=Local"
 
 	DB, err = gorm.Open("mysql", connection)
@@ -33,6 +34,10 @@ func InitDB() (err error) {
 		return err
 	}
 
-	DB.LogMode(true)
+
+	if logMode == "open" {
+		DB.LogMode(true)
+	}
+	
 	return nil
 }

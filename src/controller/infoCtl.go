@@ -38,6 +38,7 @@ func saveWeather(res http.ResponseWriter, request *http.Request) {
 	}
 
 	weatherModel.SaveWeather(data["weather"])
+	res.Write([]byte("success"))
 
 }
 

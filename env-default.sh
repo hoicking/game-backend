@@ -4,3 +4,4 @@ export MYSQL_PORT=3306
 export MSYQL_USER=root
 export MYSQL_PASSWORD=abc123
 export DB_NAME=game
+export LOG_MODE=open
