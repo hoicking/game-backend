@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"game-backend/src/controller"
+	"game-backend/src/util"
 	"log"
 	"net/http"
 	"os"
@@ -11,6 +12,12 @@ import (
 )
 
 func main() {
+
+	err := util.InitDB()
+
+	if err != nil {
+		log.Fatal("init db fail: ", err)
+	}
 
 	port := os.Getenv("PORT")
 

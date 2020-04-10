@@ -2,9 +2,10 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"game-backend/src/model"
+	"game-backend/src/util"
+
 	"github.com/gorilla/mux"
 )
 
@@ -32,7 +33,9 @@ func saveWeather(res http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	weatherModel := model.WeatherModel{}
+	weatherModel := model.WeatherModel{
+		DB: util.DB,
+	}
 
 	weatherModel.SaveWeather(data["weather"])
 
