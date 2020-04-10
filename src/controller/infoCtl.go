@@ -33,9 +33,7 @@ func saveWeather(res http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	weatherModel := model.WeatherModel{
-		DB: util.DB,
-	}
+	weatherModel := model.NewBaseModel()
 
 	weatherModel.SaveWeather(data["weather"])
 	res.Write([]byte("success"))
