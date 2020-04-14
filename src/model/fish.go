@@ -1,11 +1,14 @@
 package model
 
 import (
-
+	"game-backend/src/structs"
+	"fmt"
 )
 
-func (model * BaseModel) GetFises() {
+func (model *BaseModel) GetFishes() []structs.Fish {
+	var fishes []structs.Fish
+	model.db.Table("fish").Select("*").Find(&fishes)
 
-	model.db.Table("fish").Select()
-
+	fmt.Println("---------",fishes)
+	return fishes
 }

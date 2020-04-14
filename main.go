@@ -24,6 +24,8 @@ func main() {
 	fmt.Println("start...",port)
 	router := mux.NewRouter().StrictSlash(true)
 	controller.InfoCtl{Router: router}.Regist()
+	controller.FishCtl{Router: router}.Regist()
+
 
 	fmtPort := ":" + port
 	fmt.Println("ListenAndServe: ",fmtPort)

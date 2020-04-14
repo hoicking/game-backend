@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"game-backend/src/model"
-	"game-backend/src/util"
 
 	"github.com/gorilla/mux"
 )
